@@ -54,6 +54,23 @@
 #    define _ALT   KC_LALT
 #endif
 
+// OS-aware shortcut prefix: Cmd on Mac, Ctrl elsewhere.
+// AS() further adapts the keycode to the active host keyboard layout.
+#ifdef MAC_MODIFIERS
+#    define _SC(kc) G(AS(kc))
+#else
+#    define _SC(kc) C(AS(kc))
+#endif
+
+#define SC_UNDO  _SC(Z)
+#define SC_CUT   _SC(X)
+#define SC_COPY  _SC(C)
+#define SC_PASTE _SC(V)
+#define SC_REDO  _SC(Y)
+#define SC_CTL_W _SC(W)
+#define SC_SAVE  _SC(S)
+#define SC_ALL   _SC(A)
+
 // Home-row mods (enabled for HT_HOME_ROW_MODS and HT_TWO_THUMB_KEYS)
 #if defined HT_HOME_ROW_MODS || defined HT_TWO_THUMB_KEYS
 #    define KC_SS _GUI_T(KC_S)

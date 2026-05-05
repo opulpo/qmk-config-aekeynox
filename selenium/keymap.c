@@ -1,16 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "internals.h"
 
-// Shortcuts use AS() to adapt to the active host keyboard layout
-#define SC_UNDO  C(AS(Z))
-#define SC_CUT   C(AS(X))
-#define SC_COPY  C(AS(C))
-#define SC_PASTE C(AS(V))
-#define SC_REDO  C(AS(Y))
-#define SC_CTL_W C(AS(W))
-#define SC_SAVE  C(AS(S))
-#define SC_ALL   C(AS(A))
-
 enum arsenik_layers {
     _base,
     _num_lock,
