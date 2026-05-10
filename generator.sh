@@ -149,9 +149,9 @@ detect_layout_name() {
         keymap_folder=$(get_keymaps_folder "$keyboard_model" "$keymap")
 
         if [ -f "$keymap_folder/keymap.c" ]; then
-            layout=$(grep 'LAYOUT' "$keymap_folder/keymap.c" | sed 's/.*= \(.*\)(/\1/' | head -n 1)
+            layout=$(sed -n 's/.*= *\([A-Za-z_][A-Za-z0-9_]*\)(.*/\1/p' "$keymap_folder/keymap.c" | head -n 1)
         elif [ -f "$keymap_folder/keymap.json" ]; then
-            layout=$(grep 'LAYOUT' "$keymap_folder/keymap.json" | sed 's/ *\"layout\": \"\(.*\)\",/\1/')
+            layout=$(sed -n 's/.*"layout": *"\([^"]*\)".*/\1/p' "$keymap_folder/keymap.json" | head -n 1)
         fi
 
         if [ "$layout" = "LAYOUT" ]; then
