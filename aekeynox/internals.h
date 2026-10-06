@@ -24,12 +24,12 @@
 // The Q and B slots (Qwerty-wise) hold Tab and Shift+Tab in Arsenik,
 // Esc and Redo in Selenium, respectively.
 // This also applies to NUM_LOCK’s Q slot only.
-#ifdef SELENIUM
-#    define NAV_Q KC_ESC
-#    define NAV_B SC_REDO
-#else // ARSENIK
+#ifdef ARSENIK
 #    define NAV_Q KC_TAB
 #    define NAV_B S(KC_TAB)
+#else // SELENIUM
+#    define NAV_Q KC_ESC
+#    define NAV_B SC_REDO
 #endif
 
 // ╭─────────────────────────────────────────────────────────╮
@@ -188,6 +188,7 @@
 #    endif
 
 #elif defined HT_TWO_THUMB_KEYS
+
 #    define LTHUMB_TUCK  LSFT_T(_SE_REACH)
 #    define LTHUMB_REACH LTHUMB_TUCK
 #    define RTHUMB_REACH LT(_symbols, KC_ENT)
@@ -209,6 +210,11 @@
 #else
 #    define NAV_LTHUMB_TUCK  OSM(MOD_LSFT)
 #    define NAV_LTHUMB_REACH S(KC_TAB)
+#endif
+
+// Arsenik thumb keys
+#ifdef ARSENIK
+#    define THUMB_BAR  RTHUMB_REACH
 #endif
 
 // ╭─────────────────────────────────────────────────────────╮

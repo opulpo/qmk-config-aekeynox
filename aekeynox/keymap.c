@@ -9,6 +9,7 @@ enum arsenik_layers {
     _nav_num,
     _num_row,
     _fn_media,
+    _reboot,
 };
 
 enum custom_keycodes {
@@ -36,12 +37,12 @@ enum custom_keycodes {
         OC_TL,    KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,        KC_Y,  KC_U,   KC_I,     KC_O,    KC_P,     OC_TR,\
         OC_ML,    KC_AA,  KC_SS,  KC_DD,  KC_FF,  KC_G,        KC_H,  KC_JJ,  KC_KK,    KC_LL,   KC_SCSC,  OC_MR,\
         OC_BL,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,        KC_N,  KC_M,   KC_COMM,  KC_DOT,  KC_SLSH,  OC_BR
-#if defined SELENIUM
+#if defined ARSENIK
+#    define BASE_THUMBS \
+                         LTHUMB_TUCK,  LTHUMB_HOME,   THUMB_BAR,   RTHUMB_HOME,  RTHUMB_TUCK
+#else // SELENIUM
 #    define BASE_THUMBS \
               LTHUMB_TUCK,  LTHUMB_HOME,  LTHUMB_REACH,        RTHUMB_REACH,  RTHUMB_HOME,  RTHUMB_TUCK
-#else // ARSENIK
-#    define BASE_THUMBS \
-                                    LTHUMB_HOME,      THUMB_BAR,      RTHUMB_HOME
 #endif
 
 // 1. NumLock layer -- sticky NavNum that stays on until deactivated
@@ -49,12 +50,12 @@ enum custom_keycodes {
         __,  NAV_Q,     KC_HOME,   KC_UP,     KC_END,    KC_PGUP,         AS(SLSH),   AS(7),  AS(8),  AS(9),  TO(_base),  __,\
         __,  AS(EQL),   KC_LEFT,   KC_DOWN,   KC_RGHT,   KC_PGDN,         AS(MINS),   AS(4),  AS(5),  AS(6),  AS(0),      __,\
         __,  AS_MONEY,  AS(COLN),  AS(ASTR),  AS(PLUS),  AS(PERC),        AS(COMM),   AS(1),  AS(2),  AS(3),  AS(DOT),    __
-#if defined SELENIUM
+#if defined ARSENIK
+#    define NUM_LOCK_THUMBS \
+                                      __,  LT(_vim_nav, KC_BSPC),  __,  LT(_vim_nav, KC_SPC),  OSL(_symbols)
+#else // SELENIUM
 #    define NUM_LOCK_THUMBS \
                               __,  LT(_nav_num, KC_BSPC),  KC_TAB,        __,  LT(_nav_num, KC_SPC),  OSL(_symbols)
-#else // ARSENIK
-#    define NUM_LOCK_THUMBS \
-                                                    KC_LSFT,      KC_SPC,      TO(_base)
 #endif
 
 // 2. Symbols layer -- programming symbols (AltGr layer for Ergol)
@@ -62,12 +63,12 @@ enum custom_keycodes {
         __,  AS(CIRC),  AS(LABK),  AS(RABK),  AS(DLR),   AS(PERC),        AS(AT),    AS(AMPR),  AS(ASTR),  AS(QUOT),  AS(GRV),   __,\
         __,  AS(LCBR),  AS(LPRN),  AS(RPRN),  AS(RCBR),  AS(EQL),         AS(BSLS),  AS(PLUS),  AS(MINS),  AS(SLSH),  AS(DQUO),  __,\
         __,  TILDE,     AS(LBRC),  AS(RBRC),  AS(UNDS),  AS(HASH),        AS(PIPE),  AS(EXLM),  AS(SCLN),  AS(COLN),  AS(QUES),  __
-#if defined SELENIUM
+#if defined ARSENIK
+#    define SYMBOLS_THUMBS \
+                                     LT(_num_row, KC_ESC), KC_SPC, __, __, __
+#else // SELENIUM
 #    define SYMBOLS_THUMBS \
                                   SYM_NUM_LAYER,  KC_SPC,  KC_ENT,        __,  __,  __
-#else // ARSENIK
-#    define SYMBOLS_THUMBS \
-                                        LT(_num_row, KC_ESC),      KC_SPC,      __
 #endif
 
 // 3. VimNav layer -- HJKL arrow cluster + mouse scroll + GUI shortcuts (not accessible by default)
@@ -75,12 +76,12 @@ enum custom_keycodes {
         __,  XX,       SC_CTL_W,  VIM_PREV,    VIM_NEXT,    XX,             KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   TO(_num_lock),  __,\
         __,  SC_ALL,   SC_SAVE,   S(KC_TAB),   KC_TAB,      XX,             KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  XX,             __,\
         __,  SC_UNDO,  SC_CUT,    SC_COPY,     SC_PASTE,    SC_REDO,        MS_WHLL,  MS_WHLD,  MS_WHLU,  MS_WHLR,  XX,             __
-#if defined SELENIUM
+#if defined ARSENIK
+#    define VIM_NAV_THUMBS \
+                                   KC_CAPS,  LT(_fn_media, KC_DEL),  __,  MO(_fn_media),  LSK_RALT
+#else // SELENIUM
 #    define VIM_NAV_THUMBS \
                      KC_CAPS,  LT(_fn_media, KC_DEL),  MO(_num_row),        __,  MO(_fn_media),  LSK_RALT
-#else // ARSENIK
-#    define VIM_NAV_THUMBS \
-                                                  LSFT_T(KC_DEL),      __,      MO(_fn_media)
 #endif
 
 // 4. NavNum layer -- inverted T navigation + numpad
@@ -88,12 +89,12 @@ enum custom_keycodes {
         __,  NAV_Q,    KC_HOME,  KC_UP,    KC_END,    KC_PGUP,        AS(SLSH),  AS(7),  AS(8),  AS(9),  TO(_num_lock),  __,\
         __,  SC_ALL,   KC_LEFT,  KC_DOWN,  KC_RGHT,   KC_PGDN,        AS(MINS),  AS(4),  AS(5),  AS(6),  AS(0),          __,\
         __,  SC_UNDO,  SC_CUT,   SC_COPY,  SC_PASTE,  NAV_B,          AS(COMM),  AS(1),  AS(2),  AS(3),  AS(DOT),        __
-#if defined SELENIUM
+#if defined ARSENIK
+#    define NAV_NUM_THUMBS \
+                    NAV_LTHUMB_TUCK,  LT(_fn_media, KC_DEL),  KC_ESC,  LT(_fn_media, KC_SPC),  LSK_RALT
+#else // SELENIUM
 #    define NAV_NUM_THUMBS \
     NAV_LTHUMB_TUCK,  LT(_fn_media, KC_DEL),  NAV_LTHUMB_REACH,       KC_ESC,  LT(_fn_media, KC_SPC),  LSK_RALT
-#else // ARSENIK
-#    define NAV_NUM_THUMBS \
-                                            LSFT_T(KC_DEL),      __,      MO(_fn_media)
 #endif
 
 // 5. NumRow layer -- numbers on homerow (not accessible by default)
@@ -101,12 +102,12 @@ enum custom_keycodes {
         __,  AS_S1,  AS_S2,  AS_S3,  AS_S4,  AS_S5,        AS_S6,     AS_S7,     AS_S8,    AS_S9,     AS_S0,     __,\
         __,  AS(1),  AS(2),  AS(3),  AS(4),  AS(5),        AS(6),     AS(7),     AS(8),    AS(9),     AS(0),     __,\
         __,  XX,     XX,     XX,     XX,     XX,           AS(MINS),  AS(COMM),  AS(DOT),  AS(COLN),  AS(SLSH),  __
-#if defined SELENIUM
+#if defined ARSENIK
+#    define NUM_ROW_THUMBS \
+                                     __,  S(KC_SPC),  __,  S(KC_SPC),  KC_RALT
+#else // SELENIUM
 #    define NUM_ROW_THUMBS \
                                __,  S(KC_SPC),  __,        __,  S(KC_SPC),  KC_RALT
-#else // ARSENIK
-#    define NUM_ROW_THUMBS \
-                                          __,      S(KC_SPC),     __
 #endif
 
 // 6. FnMedia layer -- F1..12 + media controls + modifiers on right homerow
@@ -114,12 +115,12 @@ enum custom_keycodes {
     __,  KC_F1,  KC_F2,   KC_F3,   KC_F4,   XX,        XX,  KC_MNXT,          KC_VOLU,          KC_BRIU,        KC_SCRL,          __,\
     __,  KC_F5,  KC_F6,   KC_F7,   KC_F8,   XX,        XX,  _ALT_T(KC_MPLY),  _CTL_T(KC_MUTE),  _GUI_T(KC_NO),  LSFT_T(KC_PSCR),  __,\
     __,  KC_F9,  KC_F10,  KC_F11,  KC_F12,  XX,        XX,  KC_MPRV,          KC_VOLD,          KC_BRID,        KC_INS,           __
-#if defined SELENIUM
+#if defined ARSENIK
+#    define FN_MEDIA_THUMBS \
+                                  __,      __,    __,      __,     __
+#else // SELENIUM
 #    define FN_MEDIA_THUMBS \
                              __,  QK_BOOT,  __,        __,  QK_RBT,  __
-#else // ARSENIK
-#    define FN_MEDIA_THUMBS \
-                                        __,      __,     __
 #endif
 
 // QMK layers use the correct Ækeynox layout flavor
@@ -138,39 +139,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     // 1. NumLock layer -- sticky NavNum that stays on until deactivated
-    [_num_lock] = SELENIUM_LAYOUT(
+    [_num_lock] = LAYOUT(
         NUM_LOCK_ROWS,
         NUM_LOCK_THUMBS
     ),
 
     // 2. Symbols layer -- programming symbols (AltGr layer for Ergol)
-    [_symbols] = SELENIUM_LAYOUT(
+    [_symbols] = LAYOUT(
         SYMBOLS_ROWS,
         SYMBOLS_THUMBS
     ),
 
     // 3. VimNav layer -- HJKL arrow cluster + mouse scroll + GUI shortcuts (not accessible by default)
-    [_vim_nav] = SELENIUM_LAYOUT(
+    [_vim_nav] = LAYOUT(
         VIM_NAV_ROWS,
         VIM_NAV_THUMBS
     ),
 
     // 4. NavNum layer -- inverted T navigation + numpad
-    [_nav_num] = SELENIUM_LAYOUT(
+    [_nav_num] = LAYOUT(
         NAV_NUM_ROWS,
         NAV_NUM_THUMBS
     ),
 
     // 5. NumRow layer -- numbers on homerow (not accessible by default)
-    [_num_row] = SELENIUM_LAYOUT(
+    [_num_row] = LAYOUT(
         NUM_ROW_ROWS,
         NUM_ROW_THUMBS
     ),
 
     // 6. FnMedia layer -- F1..12 + media controls + modifiers on right homerow
-    [_fn_media] = SELENIUM_LAYOUT(
+    [_fn_media] = LAYOUT(
         FN_MEDIA_ROWS,
         FN_MEDIA_THUMBS
+    ),
+
+    [_reboot] = ARSENIK_LAYOUT(
+        __,  __,     __,      __,      __,      __,        __,      __,       __,       __,       __,  __,
+   QK_BOOT,  __,     __,      __,      __,      __,        __,      __,       __,       __,       __,  __,
+        __,  __,     __,      __,      __,      __,        __,      __,       __,       __,       __,  __,
+        __,  __,     __,      __,      __,      __,        __,      __,       __,       __,       __,  __,
+
+                              __,      __,        __,      __,       __
+
     ),
 
 };
