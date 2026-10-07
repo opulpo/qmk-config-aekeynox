@@ -9,7 +9,6 @@ enum arsenik_layers {
     _nav_num,
     _num_row,
     _fn_media,
-    _reboot,
 };
 
 enum custom_keycodes {
@@ -124,9 +123,9 @@ enum custom_keycodes {
 #endif
 
 // QMK layers use the correct Ækeynox layout flavor
-#if defined SELENIUM
+#if defined ARSENIK
 #    define LAYOUT(...) ARSENIK_LAYOUT(__VA_ARGS__)
-#else // ARSENIK
+#else // SELENIUM
 #    define LAYOUT(...) SELENIUM_LAYOUT(__VA_ARGS__)
 #endif
 
@@ -172,16 +171,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_fn_media] = LAYOUT(
         FN_MEDIA_ROWS,
         FN_MEDIA_THUMBS
-    ),
-
-    [_reboot] = ARSENIK_LAYOUT(
-        __,  __,     __,      __,      __,      __,        __,      __,       __,       __,       __,  __,
-   QK_BOOT,  __,     __,      __,      __,      __,        __,      __,       __,       __,       __,  __,
-        __,  __,     __,      __,      __,      __,        __,      __,       __,       __,       __,  __,
-        __,  __,     __,      __,      __,      __,        __,      __,       __,       __,       __,  __,
-
-                              __,      __,        __,      __,       __
-
     ),
 
 };
