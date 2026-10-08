@@ -38,7 +38,7 @@ enum custom_keycodes {
         OC_BL,    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,        KC_N,  KC_M,   KC_COMM,  KC_DOT,  KC_SLSH,  OC_BR
 #if defined ARSENIK
 #    define BASE_THUMBS \
-                         LTHUMB_TUCK,  LTHUMB_HOME,   THUMB_BAR,   RTHUMB_HOME,  RTHUMB_TUCK
+                               LSFT_T(KC_BSPC),   LT(_SE_NAV, KC_SPC),   LT(_symbols, KC_ENT)
 #else // SELENIUM
 #    define BASE_THUMBS \
               LTHUMB_TUCK,  LTHUMB_HOME,  LTHUMB_REACH,        RTHUMB_REACH,  RTHUMB_HOME,  RTHUMB_TUCK
@@ -51,7 +51,7 @@ enum custom_keycodes {
         __,  AS_MONEY,  AS(COLN),  AS(ASTR),  AS(PLUS),  AS(PERC),        AS(COMM),   AS(1),  AS(2),  AS(3),  AS(DOT),    __
 #if defined ARSENIK
 #    define NUM_LOCK_THUMBS \
-                                      __,  LT(_vim_nav, KC_BSPC),  __,  LT(_vim_nav, KC_SPC),  OSL(_symbols)
+                                                             __,   KC_SPC,   __
 #else // SELENIUM
 #    define NUM_LOCK_THUMBS \
                               __,  LT(_nav_num, KC_BSPC),  KC_TAB,        __,  LT(_nav_num, KC_SPC),  OSL(_symbols)
@@ -64,7 +64,7 @@ enum custom_keycodes {
         __,  TILDE,     AS(LBRC),  AS(RBRC),  AS(UNDS),  AS(HASH),        AS(PIPE),  AS(EXLM),  AS(SCLN),  AS(COLN),  AS(QUES),  __
 #if defined ARSENIK
 #    define SYMBOLS_THUMBS \
-                                     LT(_num_row, KC_ESC), KC_SPC, __, __, __
+                                             LT(_num_row, KC_ESC),  __, __
 #else // SELENIUM
 #    define SYMBOLS_THUMBS \
                                   SYM_NUM_LAYER,  KC_SPC,  KC_ENT,        __,  __,  __
@@ -77,7 +77,7 @@ enum custom_keycodes {
         __,  SC_UNDO,  SC_CUT,    SC_COPY,     SC_PASTE,    SC_REDO,        MS_WHLL,  MS_WHLD,  MS_WHLU,  MS_WHLR,  XX,             __
 #if defined ARSENIK
 #    define VIM_NAV_THUMBS \
-                                   KC_CAPS,  LT(_fn_media, KC_DEL),  __,  MO(_fn_media),  LSK_RALT
+                                                     LSFT_T(KC_DEL),  __,  LT(_fn_media, KC_ESC)
 #else // SELENIUM
 #    define VIM_NAV_THUMBS \
                      KC_CAPS,  LT(_fn_media, KC_DEL),  MO(_num_row),        __,  MO(_fn_media),  LSK_RALT
@@ -90,7 +90,7 @@ enum custom_keycodes {
         __,  SC_UNDO,  SC_CUT,   SC_COPY,  SC_PASTE,  NAV_B,          AS(COMM),  AS(1),  AS(2),  AS(3),  AS(DOT),        __
 #if defined ARSENIK
 #    define NAV_NUM_THUMBS \
-                    NAV_LTHUMB_TUCK,  LT(_fn_media, KC_DEL),  KC_ESC,  LT(_fn_media, KC_SPC),  LSK_RALT
+                                               LSFT_T(KC_DEL),  __,  LT(_fn_media, KC_ESC)
 #else // SELENIUM
 #    define NAV_NUM_THUMBS \
     NAV_LTHUMB_TUCK,  LT(_fn_media, KC_DEL),  NAV_LTHUMB_REACH,       KC_ESC,  LT(_fn_media, KC_SPC),  LSK_RALT
@@ -103,7 +103,7 @@ enum custom_keycodes {
         __,  XX,     XX,     XX,     XX,     XX,           AS(MINS),  AS(COMM),  AS(DOT),  AS(COLN),  AS(SLSH),  __
 #if defined ARSENIK
 #    define NUM_ROW_THUMBS \
-                                     __,  S(KC_SPC),  __,  S(KC_SPC),  KC_RALT
+                                             __,  S(KC_SPC),  KC_RALT
 #else // SELENIUM
 #    define NUM_ROW_THUMBS \
                                __,  S(KC_SPC),  __,        __,  S(KC_SPC),  KC_RALT
@@ -116,7 +116,7 @@ enum custom_keycodes {
     __,  KC_F9,  KC_F10,  KC_F11,  KC_F12,  XX,        XX,  KC_MPRV,          KC_VOLD,          KC_BRID,        KC_INS,           __
 #if defined ARSENIK
 #    define FN_MEDIA_THUMBS \
-                                  __,      __,    __,      __,     __
+                                          __,    __,     __
 #else // SELENIUM
 #    define FN_MEDIA_THUMBS \
                              __,  QK_BOOT,  __,        __,  QK_RBT,  __

@@ -29,7 +29,7 @@
 // Selenium (default) targets keyboards with symmetrical two-key or three-key
 // clusters under each thumb. Uncomment the relevant line below.
 
-// #define ARSENIK
+#define ARSENIK
 // #define SELENIUM  // (default mapping)
 
 // Uncomment one of the following lines to pick your preferred hold-tap config:

@@ -188,12 +188,16 @@
 #    endif
 
 #elif defined HT_TWO_THUMB_KEYS
-
 #    define LTHUMB_TUCK  LSFT_T(_SE_REACH)
 #    define LTHUMB_REACH LTHUMB_TUCK
 #    define RTHUMB_REACH LT(_symbols, KC_ENT)
 #    define RTHUMB_TUCK  RTHUMB_REACH
-#    ifdef LEFT_HAND_SPACE
+// Arsenik thumb keys
+#    if defined ARSENIK
+#        define LTHUMB_HOME LSFT_T(KC_BSPC)
+#        define THUMB_BAR   LT(_SE_NAV, KC_SPC)
+#        define RTHUMB_HOME LT(_symbols, KC_ENT)
+#    elif defined LEFT_HAND_SPACE
 #        define LTHUMB_HOME LT(_SE_NAV, KC_SPC)
 #        define RTHUMB_HOME LT(_SE_EXTRA, KC_BSPC)
 #    else
@@ -210,11 +214,6 @@
 #else
 #    define NAV_LTHUMB_TUCK  OSM(MOD_LSFT)
 #    define NAV_LTHUMB_REACH S(KC_TAB)
-#endif
-
-// Arsenik thumb keys
-#ifdef ARSENIK
-#    define THUMB_BAR  RTHUMB_REACH
 #endif
 
 // ╭─────────────────────────────────────────────────────────╮
